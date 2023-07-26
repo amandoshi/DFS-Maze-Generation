@@ -41,16 +41,16 @@ class GUI:
     # render tiles
 
     def __render_tiles(self):
-        x_coord = 0
-        for width in range(len(self.__table)):
-            y_coord = 0
-            for height in range(len(self.__table[0])):
-                rect_color = self.__tile_colors(self.__table[width][height])
+        y_coord = 0
+        for y in range(len(self.__table)):
+            x_coord = 0
+            for x in range(len(self.__table[0])):
+                rect_color = self.__tile_colors(self.__table[y][x])
                 rect_shape = (x_coord + constants.TILE_BORDER_SIZE, y_coord + constants.TILE_BORDER_SIZE, 
                               constants.TILE_SIZE - constants.TILE_BORDER_SIZE, constants.TILE_SIZE - constants.TILE_BORDER_SIZE)
                 pygame.draw.rect(self.__screen, rect_color, rect_shape)
-                y_coord += constants.TILE_SIZE
-            x_coord += constants.TILE_SIZE
+                x_coord += constants.TILE_SIZE
+            y_coord += constants.TILE_SIZE
     
     def __tile_colors(self, value):
         match value:

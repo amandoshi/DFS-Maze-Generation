@@ -53,7 +53,6 @@ class DFS_Maze_Generation:
                 self.__open_wall(curr_tile, curr_tile.prev_tile)
 
                 # push valid neighbor tiles to stack
-                # neighbors = curr_tile.get_neighbors()
                 neighbors = [x for x in curr_tile.get_neighbors() if self.__valid_tile(x)]
                 random.shuffle(neighbors)
                 for tile in neighbors:
@@ -79,10 +78,8 @@ class DFS_Maze_Generation:
             t2.border["S"] = False
             t1.border["N"] = False
 
-        # print(f"({t1.x}, {t1.y}) ({t2.x}, {t2.y})", t1.__repr__(), t2.__repr__())
-
     def __get_table(self):
-        table = [[1] * (self.__width * 2 + 1) for _ in range(self.__height * 2 + 1)]
+        table = [[1] * (self.__width * 2 - 1) for _ in range(self.__height * 2 - 1)]
         for tile in self.__visited:
             table[tile.x * 2][tile.y * 2] = 0
             if not tile.border["N"]:
@@ -93,5 +90,4 @@ class DFS_Maze_Generation:
                 table[tile.x * 2 + 1][tile.y * 2] = 0
             if not tile.border["W"]:
                 table[tile.x * 2 - 1][tile.y * 2] = 0
-        # print(self.__visited)
         return table
